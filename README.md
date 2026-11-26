@@ -2,119 +2,119 @@
 
 # GridApp
 
+🇺🇸 **English** · 🇧🇷 [Português](README.pt-BR.md)
+
 ![GitHub repo size](https://img.shields.io/github/repo-size/soaresmarcosj1/GridApp?style=for-the-badge)
 ![GitHub language count](https://img.shields.io/github/languages/count/soaresmarcosj1/GridApp?style=for-the-badge)
 ![Platform macOS](https://img.shields.io/badge/macOS-14.0%2B%20(Apple%20Silicon)-000000?style=for-the-badge&logo=apple&logoColor=white)
 ![Swift](https://img.shields.io/badge/Swift-6.4-F05138?style=for-the-badge&logo=swift&logoColor=white)
 
-<img src="Resources/AppIcon-preview.png" alt="Ícone do GridApp" width="140">
+<img src="Resources/AppIcon-preview.png" alt="GridApp icon" width="140">
 
-> Gerador nativo de **Contact Sheets** de vídeo para macOS (Apple Silicon), com pré-visualização com zoom no trackpad, edição direta de cada captura com um clique e automação pelo Finder e Apple Atalhos.
+> A native macOS app for creating video contact sheets. Built for Apple Silicon with trackpad zoom, click-to-edit frames, and Finder/Shortcuts automation.
 
 </div>
 
 ---
 
-## Ajustes e melhorias
+## Roadmap & features
 
-O projeto continua evoluindo e os principais recursos estão organizados abaixo:
+What is already built and what is planned next:
 
-- [x] Extração paralela via **AVFoundation** e fallback automático via **FFmpeg / FFprobe** (`MKV`, `AVI`, `WebM`, `FLV`, etc.)
-- [x] Visualizador nativo com gesto de **pinça (zoom)** no trackpad e edição direta de frames ao passar o mouse e clicar
-- [x] Layouts pré-definidos de folha (`Auto`, `16:9`, `9:16`, `4:5`, `5:4`, `1:1`) e proporção das miniaturas (`Adaptar`, `Vídeo`, `16:9`, `4:3`, `1:1`)
-- [x] Cabeçalho técnico completo com tipografia e espaçamentos configuráveis por steppers
-- [x] Janela de Configurações (`⌘,`) com menu lateral, temas de cor, modo Claro/Escuro/Sistema e densidade (`Compacto`, `Normal`, `Espaçoso`)
-- [x] Integração com **Ação Rápida do Finder**, **Apple Atalhos** (`AppIntents`) e modo terminal `--headless`
-- [x] Ícone oficial Liquid Glass compilado em `Assets.car` via GitHub Actions (`xcode-27`)
-- [ ] Notarização / assinatura Apple Developer para distribuição fora do Mac local
+- [x] Frame extraction with **AVFoundation** and automatic **FFmpeg / FFprobe** fallback (`MKV`, `AVI`, `WebM`, `FLV`, etc.)
+- [x] Pinch-to-zoom preview on the trackpad and direct click-to-edit on any frame
+- [x] Sheet aspect presets (`Auto`, `16:9`, `9:16`, `4:5`, `5:4`, `1:1`) and thumbnail ratios (`Adaptar`, `Vídeo`, `16:9`, `4:3`, `1:1`)
+- [x] Customizable technical header with font size, line spacing, and alignment controls
+- [x] Settings window (`⌘,`) with theme colors, Light/Dark/System mode, and UI density (`Compacto`, `Normal`, `Espaçoso`)
+- [x] **Finder Quick Action**, **Apple Shortcuts** (`AppIntents`), and `--headless` CLI mode
+- [x] Liquid Glass app icon compiled to `Assets.car` via GitHub Actions (`xcode-27`)
+- [ ] Apple Developer signing and notarization for distribution
 
-## 💻 Pré-requisitos
+## 💻 Prerequisites
 
-Antes de começar, verifique se você atendeu aos seguintes requisitos:
+Before you start, make sure you have:
 
-- Você possui um Mac com **macOS 14.0 ou superior** (otimizado para **Apple Silicon `arm64`**).
-- Você possui o **Swift / Xcode Command Line Tools** instalado (`swiftc`) para compilar localmente via `build_app.sh`.
-- *(Opcional, recomendado)* Você instalou o **FFmpeg** via Homebrew para abrir formatos como `MKV`, `AVI`, `WebM` e exportar em `WebP`:
-  ```bash
-  brew install ffmpeg
-  ```
+- A Mac running **macOS 14.0 or later** (**Apple Silicon `arm64`**).
+- **Xcode Command Line Tools** (`swiftc`) to build locally with `build_app.sh`.
+- *(Optional)* **FFmpeg** via Homebrew for extra formats (`MKV`, `AVI`, `WebM`) and `WebP` export:
 
-## 🚀 Instalando o GridApp
+```bash
+# Install FFmpeg with Homebrew
+brew install ffmpeg
+```
 
-Para compilar e instalar o **GridApp** localmente no macOS, siga estas etapas:
+## 🚀 Installing GridApp
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/soaresmarcosj1/GridApp.git
-   cd GridApp
-   ```
+Clone the repo, build the app, and copy it to `/Applications`:
 
-2. Execute o script de build (ele já embute o `Resources/Assets.car` pré-compilado e gera o `AppIcon.icns`):
-   ```bash
-   chmod +x build_app.sh
-   ./build_app.sh
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/soaresmarcosj1/GridApp.git
+cd GridApp
 
-3. Instale o aplicativo na pasta `/Applications`:
-   ```bash
-   rm -rf /Applications/GridApp.app && cp -R GridApp.app /Applications/GridApp.app
-   ```
+# Build GridApp.app (embeds Resources/Assets.car and AppIcon.icns)
+chmod +x build_app.sh
+./build_app.sh
+
+# Install into /Applications
+rm -rf /Applications/GridApp.app && cp -R GridApp.app /Applications/GridApp.app
+```
 
 > [!NOTE]
-> Caso modifique o pacote vetorial `Resources/AppIcon.icon` no **Icon Composer**, o workflow [`.github/workflows/compile-icon.yml`](.github/workflows/compile-icon.yml) recompila automaticamente o `Resources/Assets.car` no runner `xcode-27` ao fazer `git push`.
+> If you edit `Resources/AppIcon.icon` in **Icon Composer**, pushing your changes triggers [`.github/workflows/compile-icon.yml`](.github/workflows/compile-icon.yml) to rebuild `Resources/Assets.car` on GitHub Actions (`xcode-27`).
 
-## ☕ Usando o GridApp
+## ☕ Using GridApp
 
-### Interface principal
+### Desktop app
 
-1. Arraste um ou mais vídeos (ou clique em **Adicionar Vídeos** / `⌘O`) para carregar na fila.
-2. Navegue pelo preview usando a **pinça no trackpad** (`⌘+`, `⌘-` ou `⌘0` para `100%`).
-3. Passe o mouse sobre qualquer miniatura e **clique diretamente no frame** para ajustar o timestamp exato na janela de captura (**Aplicar** / **Cancelar**).
-4. Personalize colunas, proporção da folha, proporção das miniaturas, cabeçalho técnico e cores na aba **Ajustes & Design** (`⌘1`) ou salve seus próprios modelos (`⇧⌘M`).
-5. Exporte em **JPEG**, **PNG**, **TIFF** ou **WebP** na aba **Exportação** (`⌘2`) ou em lote para múltiplos vídeos marcados na fila (`⇧⌘E`).
+1. Drop video files into the window (or press `⌘O`).
+2. Pinch on the trackpad to zoom (`⌘+`, `⌘-`, `⌘0` for `100%`).
+3. Hover and click any frame to fine-tune its timestamp, then click **Aplicar** or **Cancelar**.
+4. Adjust layout, header, and colors under **Ajustes & Design** (`⌘1`), or save reusable presets (`⇧⌘M`).
+5. Export as **JPEG**, **PNG**, **TIFF**, or **WebP** under **Exportação** (`⌘2`), or batch-export the queue (`⇧⌘E`).
 
-### Atalhos de teclado principais
+### Keyboard shortcuts
 
-| Atalho | Ação |
-| --- | --- |
-| `⌘O` | Adicionar vídeos à fila |
-| `⌘S` / `⇧⌘S` | Salvar Contact Sheet atual / Salvar Como |
-| `⇧⌘E` | Exportar selecionados ou toda a fila |
-| `⇧⌘C` | Copiar Contact Sheet para a Área de Transferência |
-| `⌘R` | Recapturar frames do vídeo atual |
-| `⌘,` | Abrir Configurações do GridApp |
-| `⌘1` / `⌘2` | Alternar entre *Ajustes & Design* e *Exportação* |
+| Shortcut | Action |
+| :--- | :--- |
+| `⌘O` | Add videos to queue |
+| `⌘S` / `⇧⌘S` | Save current contact sheet / Save As |
+| `⇧⌘E` | Export selected or all videos in queue |
+| `⇧⌘C` | Copy contact sheet to clipboard |
+| `⌘R` | Re-capture frames for current video |
+| `⌘,` | Open GridApp Settings |
+| `⌘1` / `⌘2` | Switch between *Ajustes & Design* and *Exportação* |
 
-### Uso sem abrir a janela (Finder, Atalhos e Terminal)
+### Automation (no UI required)
 
-- **Finder (Ação Rápida):** ao abrir o app pela primeira vez, ele instala a ação *"Criar Contact Sheet (GridApp)"* em `~/Library/Services` para clicar com o botão direito em vídeos ou pastas.
-- **Apple Atalhos:** utilize a ação nativa **"Criar Contact Sheet de Vídeo"** (com suporte a execução em segundo plano e escolha opcional de modelo).
-- **Terminal (`--headless`):**
-  ```bash
-  "/Applications/GridApp.app/Contents/MacOS/GridApp" --headless /caminho/do/video.mp4
-  ```
+- **Finder Quick Action:** On first launch, GridApp installs *"Criar Contact Sheet (GridApp)"* in `~/Library/Services` so you can right-click videos or folders in Finder.
+- **Apple Shortcuts:** Use the native **"Criar Contact Sheet de Vídeo"** action in the background, with an optional preset name.
+- **Command line (`--headless`):**
 
-## 📫 Contribuindo para o GridApp
+```bash
+# Generate a contact sheet without opening the app window
+"/Applications/GridApp.app/Contents/MacOS/GridApp" --headless /path/to/video.mp4
+```
 
-Para contribuir com o **GridApp**, siga estas etapas:
+## 📫 Contributing to GridApp
 
-1. Bifurque este repositório.
-2. Crie um branch: `git checkout -b <nome_branch>`.
-3. Faça suas alterações e confirme-as: `git commit -m '<mensagem_commit>'`.
-4. Envie para o branch original: `git push origin <nome_branch>`.
-5. Crie a solicitação de pull.
+To contribute:
 
-Como alternativa, consulte a documentação do GitHub em [como criar uma solicitação pull](https://docs.github.com/pt/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+1. Fork this repository.
+2. Create a branch: `git checkout -b <branch-name>`.
+3. Commit your changes: `git commit -m '<message>'`.
+4. Push the branch: `git push origin <branch-name>`.
+5. Open a pull request.
 
-## 🤝 Colaboradores
+See the [GitHub pull request guide](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) for details.
 
-Agradecemos às seguintes pessoas que contribuíram para este projeto:
+## 🤝 Contributors
 
 <table>
   <tr>
     <td align="center">
-      <a href="https://github.com/soaresmarcosj1" title="Perfil de Marcos no GitHub">
-        <img src="https://github.com/soaresmarcosj1.png" width="100" alt="Foto de Marcos no GitHub"/><br>
+      <a href="https://github.com/soaresmarcosj1" title="Marcos on GitHub">
+        <img src="https://github.com/soaresmarcosj1.png" width="100" alt="Marcos avatar"/><br>
         <sub>
           <b>Marcos (soaresmarcosj1)</b>
         </sub>
@@ -123,12 +123,12 @@ Agradecemos às seguintes pessoas que contribuíram para este projeto:
   </tr>
 </table>
 
-## 📝 Licença
+## 📝 License
 
-Este repositório ainda não possui um arquivo de licença definido. Caso deseje disponibilizar o código abertamente, adicione um arquivo `LICENSE` (como MIT) na raiz do projeto.
+No license file has been added to this repository yet. Add a `LICENSE` file (such as MIT) to the root directory if you want to distribute it under an open-source license.
 
 ---
 
 <div align="center">
-  <sub>README estruturado com base no <a href="https://github.com/iuricode/readme-template">iuricode/readme-template</a>.</sub>
+  <sub>Structured with <a href="https://github.com/iuricode/readme-template">iuricode/readme-template</a>.</sub>
 </div>
