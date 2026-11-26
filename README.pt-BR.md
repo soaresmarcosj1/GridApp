@@ -8,6 +8,7 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/soaresmarcosj1/GridApp?style=for-the-badge)
 ![Platform macOS](https://img.shields.io/badge/macOS-14.0%2B%20(Apple%20Silicon)-000000?style=for-the-badge&logo=apple&logoColor=white)
 ![Swift](https://img.shields.io/badge/Swift-6.4-F05138?style=for-the-badge&logo=swift&logoColor=white)
+[![Licença: GPL v3](https://img.shields.io/badge/Licen%C3%A7a-GPLv3-blue?style=for-the-badge)](LICENSE)
 
 <img src="Resources/AppIcon-preview.png" alt="Ícone do GridApp" width="140">
 
@@ -125,7 +126,7 @@ Veja também a [documentação do GitHub sobre pull requests](https://docs.githu
 
 ## 📝 Licença
 
-Este repositório ainda não tem um arquivo de licença. Adicione um arquivo `LICENSE` (como MIT) na raiz do projeto caso queira distribuí-lo em código aberto.
+O GridApp é distribuído sob a licença **GNU General Public License v3.0 (GPLv3)**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
 ---
 
