@@ -12,8 +12,8 @@ permissions:
 
 jobs:
   compile-icon:
-    name: Compilar AppIcon.icon via actool (macOS)
-    runs-on: macos-26
+    name: Compilar AppIcon.icon via actool (macOS / Xcode 27)
+    runs-on: xcode-27
 
     steps:
       - name: Baixar repositório
