@@ -1,0 +1,68 @@
+name: Compilar AppIcon (Assets.car)
+
+on:
+  push:
+    paths:
+      - 'Resources/AppIcon.icon/**'
+      - '.github/workflows/compile-icon.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  compile-icon:
+    name: Compilar AppIcon.icon via actool (macOS)
+    runs-on: macos-26
+
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+
+      - name: Verificar versão do Xcode e actool
+        run: |
+          sw_vers
+          xcodebuild -version
+          xcrun --find actool
+
+      - name: Compilar Resources/AppIcon.icon para Assets.car
+        run: |
+          mkdir -p ./compiled-icon
+          pkill -x ibtoold || true
+          xcrun actool "Resources/AppIcon.icon" \
+            --compile "./compiled-icon" \
+            --platform macosx \
+            --minimum-deployment-target 14.0 \
+            --target-device mac \
+            --app-icon AppIcon \
+            --output-partial-info-plist "./compiled-icon/assetcatalog_generated_info.plist" < /dev/null
+          ls -lh ./compiled-icon
+
+      - name: Inspecionar aparências compiladas no Assets.car
+        run: |
+          /usr/bin/assetutil -I "./compiled-icon/Assets.car" | head -n 45
+
+      - name: Publicar Assets.car como Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: GridApp-IconAssets
+          path: ./compiled-icon/
+
+      - name: Atualizar Resources/Assets.car no repositório
+        run: |
+          cp "./compiled-icon/Assets.car" "Resources/Assets.car"
+          if [ -f "./compiled-icon/AppIcon.icns" ]; then
+            cp "./compiled-icon/AppIcon.icns" "Resources/AppIcon.icns"
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Resources/Assets.car
+          if [ -f "Resources/AppIcon.icns" ]; then
+            git add Resources/AppIcon.icns
+          fi
+          if git diff --cached --quiet; then
+            echo "Nenhuma alteração em Assets.car."
+          else
+            git commit -m "chore: compilar Resources/Assets.car a partir do AppIcon.icon [skip ci]"
+            git push
+          fi
