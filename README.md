@@ -28,10 +28,9 @@ What is already built and what is planned next:
 - [x] Customizable technical header with font size, line spacing, and alignment controls
 - [x] Settings window (`⌘,`) with theme colors, Light/Dark/System mode, and UI density (`Compacto`, `Normal`, `Espaçoso`)
 - [x] **Finder Quick Action**, **Apple Shortcuts** (`AppIntents`), and `--headless` CLI mode
-- [x] Liquid Glass app icon compiled to `Assets.car` via GitHub Actions (`xcode-27`)
-- [ ] Apple Developer signing and notarization for distribution
+- [x] Liquid Glass app icon
 
-## 💻 Prerequisites
+## 💻 Requirements 
 
 Before you start, make sure you have:
 
