@@ -83,9 +83,9 @@ cat > "${APP_BUNDLE}/Contents/Info.plist" <<EOF
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>1.5.0</string>
+    <string>0.1.0</string>
     <key>CFBundleVersion</key>
-    <string>6</string>
+    <string>1</string>
     <key>CFBundleDevelopmentRegion</key>
     <string>pt-BR</string>
     <key>CFBundleLocalizations</key>

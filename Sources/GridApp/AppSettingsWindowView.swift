@@ -1,3 +1,7 @@
+// GridApp — Copyright (C) 2026 Marcos (soaresmarcosj1)
+// Licensed under the GNU General Public License v3.0 (GPL-3.0-or-later).
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import SwiftUI
 import AppKit
 
@@ -775,13 +779,24 @@ struct AppSettingsWindowView: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("GridApp para macOS")
                             .font(.system(size: 17, weight: .bold))
-                        Text("Versão 1.5.0 (Apple Silicon Native)")
+                        Text("Versão \((Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "0.1.0") (Pré-release • Apple Silicon Native)")
                             .font(.system(size: 13))
                             .foregroundStyle(.secondary)
                         Text("Gerador rápido e personalizável de Contact Sheets para qualquer formato de vídeo.")
                             .font(.system(size: 12))
                             .foregroundStyle(.secondary)
                     }
+                }
+            }
+
+            settingsGroup {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Copyright © 2026 Marcos (soaresmarcosj1)")
+                        .font(.system(size: 13, weight: .semibold))
+                    Text("Distribuído sob a licença GNU General Public License v3.0 (GPLv3). Este é um software livre fornecido sem garantias; modificações redistribuídas devem manter a mesma licença.")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
                 }
             }
         }

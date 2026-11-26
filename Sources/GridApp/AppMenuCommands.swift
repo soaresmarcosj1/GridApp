@@ -1,3 +1,7 @@
+// GridApp — Copyright (C) 2026 Marcos (soaresmarcosj1)
+// Licensed under the GNU General Public License v3.0 (GPL-3.0-or-later).
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import SwiftUI
 import AppKit
 
@@ -11,8 +15,8 @@ struct AppMenuCommands: Commands {
                 NSApplication.shared.orderFrontStandardAboutPanel(
                     options: [
                         NSApplication.AboutPanelOptionKey.applicationName: "GridApp",
-                        NSApplication.AboutPanelOptionKey.applicationVersion: "1.3.0",
-                        NSApplication.AboutPanelOptionKey(rawValue: "Copyright"): "Gerador Profissional de Contact Sheets para macOS"
+                        NSApplication.AboutPanelOptionKey.applicationVersion: (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String) ?? "0.1.0",
+                        NSApplication.AboutPanelOptionKey(rawValue: "Copyright"): "Copyright © 2026 Marcos (soaresmarcosj1) • Licenciado sob GNU GPLv3"
                     ]
                 )
             }

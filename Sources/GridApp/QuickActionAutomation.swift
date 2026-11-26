@@ -1,3 +1,7 @@
+// GridApp — Copyright (C) 2026 Marcos (soaresmarcosj1)
+// Licensed under the GNU General Public License v3.0 (GPL-3.0-or-later).
+// SPDX-License-Identifier: GPL-3.0-or-later
+
 import Foundation
 import AppKit
 import UserNotifications
